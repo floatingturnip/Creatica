@@ -22,13 +22,14 @@ def gen(video):
             new_image = effects.get_ball(image)
         else:
             new_image = image
-        ret, jpeg = cv2.imencode('.jpg', new_image)
-        frame = jpeg.tobytes()
-        #cv2.imshow("test_image", test_image)
 
         #runs every 1 second
         if time() - startTime > 1:
             startTime = time()
+            #effects.colourize_image(image)
+
+        ret, jpeg = cv2.imencode('.jpg', new_image)
+        frame = jpeg.tobytes()
 
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
