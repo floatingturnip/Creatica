@@ -7,7 +7,7 @@ video = cv2.VideoCapture(0)
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    return render_template("index.html")
 
 def gen(video):
     while True:
