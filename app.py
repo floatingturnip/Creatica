@@ -4,7 +4,7 @@ import effects
 
 app = Flask(__name__)
 video = cv2.VideoCapture(0)
-count = 0
+index_add_counter = 0
 
 @app.route('/')
 def hello_world():
@@ -13,9 +13,12 @@ def hello_world():
 
 def gen(video):
     while True:
+        global index_add_counter
         success, image = video.read()
-        new_image = effects.get_ball(image)
-
+        if index_add_counter % 2 == 1:
+            new_image = effects.get_ball(image)
+        else:
+            new_image = image
         ret, jpeg = cv2.imencode('.jpg', new_image)
         frame = jpeg.tobytes()
         #cv2.imshow("test_image", test_image)
@@ -32,6 +35,15 @@ def video_feed():
 @app.route("/home")
 def home():
     return render_template("home.html")
+
+@app.route("/url/count/increment", methods = ['POST'])
+def increment_count():
+    global index_add_counter
+    index_add_counter = index_add_counter + 1
+    print(index_add_counter)
+    return "success=true"
+    #pass #count = count + 1
+
 
 if __name__ == '__main__':
     app.run()
