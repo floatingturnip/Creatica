@@ -7,8 +7,21 @@
     <h1>Video Streaming Demonstration</h1>
     <img id="bg" src="{{ url_for('video_feed') }}">
 
-    <button>test</button>
-    <button>test2</button>
+    <button id = myBtn>test</button>
+    <button id = magic>magic</button>
 
+    <p id="demo"></p>
+
+    <script>
+    document.getElementById("myBtn").addEventListener("click", function() {
+      document.getElementById("demo").innerHTML = "Hello World";
+    });
+    </script>
+
+    <script>
+    document.getElementById("magic").addEventListener("click", function() {
+      document.getElementById("demo").innerHTML = "Hello World";
+    });
+    </script>
   </body>
 </html>

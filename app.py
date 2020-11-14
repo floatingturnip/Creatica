@@ -4,10 +4,12 @@ import effects
 
 app = Flask(__name__)
 video = cv2.VideoCapture(0)
+count = 0
 
 @app.route('/')
 def hello_world():
     return render_template("index.html")
+
 
 def gen(video):
     while True:
@@ -25,6 +27,7 @@ def video_feed():
     global video
     return Response(gen(video),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
+
 
 @app.route("/home")
 def home():
