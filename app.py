@@ -69,18 +69,6 @@ def increment_count():
     return "success=true"
     #pass #count = count + 1
 
-@app.route("/get-image/<robot>")
-def robot():
-    global colour_selector
-    global robot_img
-    global startTime
-
-    #if time() - startTime >4:
-     #   change_robot(colour_selector)
-      #  startTime = time()
-
-    return send_from_directory(app.static_folder, filename='robot_4.png', as_attachment=True)
-
 def gen_img(image):
     img = cv2.imread(image)
     ret, jpeg = cv2.imencode('.jpg', img)
@@ -90,6 +78,7 @@ def gen_img(image):
            b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
 # changes the sleepy robot to a waving robot if the user is waving
+# not called
 def change_robot(x):
     global robot_img
 
