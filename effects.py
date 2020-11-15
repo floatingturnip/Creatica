@@ -11,10 +11,19 @@ def get_ball(image):
 
 def change_colour(image):
     (rows, cols, height) = np.shape(image)
-    #print(rows)
-    #print(cols)
     red_img = np.full((rows, cols, 3), (0, 0, 255), np.uint8)
     new_image = cv2.add(image, red_img)
+    return new_image
+def change_colour_green(image):
+    (rows, cols, height) = np.shape(image)
+    green_img = np.full((rows, cols, 3), (0, 255, 0), np.uint8)
+    new_image = cv2.add(image, green_img)
+    return new_image
+
+def change_colour_blue(image):
+    (rows, cols, height) = np.shape(image)
+    blue_img = np.full((rows, cols, 3), (255, 0, 0), np.uint8)
+    new_image = cv2.add(image, blue_img)
     return new_image
 
 def colourize_image(image):

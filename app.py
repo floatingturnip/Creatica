@@ -18,8 +18,13 @@ def gen(video):
         global startTime
         global index_add_counter
         success, image = video.read()
-        if index_add_counter % 2 == 1:
+        colour_selector = index_add_counter % 4
+        if colour_selector == 1:
             new_image = effects.change_colour(image)
+        elif colour_selector == 2:
+            new_image = effects.change_colour_blue(image)
+        elif colour_selector == 3:
+            new_image = effects.change_colour_green(image)
         else:
             new_image = image
 

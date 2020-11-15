@@ -16,6 +16,20 @@
 
 <p><img id="bg" src="{{ url_for('video_feed') }}"></p>
 
+<button id = myBtn class="button">test</button>
+    <button id = magic class="button">magic</button>
+
+    <p id="demo"></p>
+
+    <script>
+    document.getElementById("myBtn").addEventListener("click", async function() {
+        let response = await fetch('/url/count/increment', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json;charset=utf-8'},
+        });
+    });
+    </script>
+
 <a href="#" class="button">Link Button</a>
 <button class="button">Button</button>
 <input type="button" class="button" value="Input Button">
