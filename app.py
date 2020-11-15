@@ -8,7 +8,7 @@ app = Flask(__name__)
 video = cv2.VideoCapture(0)
 index_add_counter = 0
 startTime = time()
-robot_img = r'\static\robot_1.png'
+robot_img = 'static/robot_1.png'
 colour_selector = 0
 
 @app.route('/')
@@ -79,7 +79,15 @@ def robot():
         change_robot(colour_selector)
         startTime = time()
 
-    return robot_img
+    return Response(gen_img(robot_img), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+def gen_img(image):
+    img = cv2.imread(image)
+    ret, jpeg = cv2.imencode('.jpg', img)
+    frame = jpeg.tobytes()
+
+    yield (b'--frame\r\n'
+           b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
 # changes the sleepy robot to a waving robot if the user is waving
 def change_robot(x):
