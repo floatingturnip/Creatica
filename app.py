@@ -19,15 +19,14 @@ def gen(video):
         global index_add_counter
         success, image = video.read()
         if index_add_counter % 2 == 1:
-            new_image = effects.get_ball(image)
+            new_image = effects.change_colour(image)
         else:
             new_image = image
 
         #runs every 1 second
-        if time() - startTime > 1:
-            startTime = time()
-            #effects.colourize_image(image)
-
+        #if time() - startTime > 1:
+            #startTime = time()
+        new_image = effects.colourize_image(new_image)
         ret, jpeg = cv2.imencode('.jpg', new_image)
         frame = jpeg.tobytes()
 
