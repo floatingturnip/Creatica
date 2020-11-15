@@ -14,17 +14,14 @@
   <a href="#contact-us">Contact Us</a>
 </div>
 
-<a id="home"></a><h1>Change the colour of the world with your hands</h1></a>
+<a id="home"></a><h1>FingerPaint.io</h1></a>
 <section class="red"><p></p></section>
 <section class="red"><p></p></section>
 
 <a id="about"><h2>About</h2></a>
 <section class="blue"><p></p></section>
 <section class="blue">
-    <p>London is the capital city of England. It is the most populous city in the  United Kingdom,
-        with a metropolitan area of over 13 million inhabitants.Standing on the River Thames,
-        London has been a 	major settlement for two millennia, its history going back to its
-        founding by the Romans, who named it Londinium.</p>
+    <center>Hi! This is FingerPaint.io, a hack for Creatica 2020!</center>
 </section>
 <section class="blue"><p></p></section>
 
@@ -35,17 +32,20 @@
 
 <section class="blue"><p></p></section>
 <section class="blue">
-    <p>London is the capital city of England. It is the most populous city in the  United Kingdom,
-        with a metropolitan area of over 13 million inhabitants.Standing on the River Thames,
-        London has been a 	major settlement for two millennia, its history going back to its
-        founding by the Romans, who named it Londinium.</p>
+    <center>FingerPaint.io works best when you are against a dark background. Make sure no other apps are using your video feed.<br>
+    Click the 'Enable Color Changing' button, and then hold up one to five fingers to change the color!</center>
 </section>
 <section class="blue"><p></p></section>
 
 <a id="video-testing"><p></p></a>
 <div class="video"><img id="bg" src="{{ url_for('video_feed') }}"></div>
-<div class="robot"><img src="{{url_for('robot')}}" width="300" height="auto"></div>
 <button id = myBtn class="button">Enable Colour Changing</button>
+<p></p>
+<img src="{{url_for('static',filename='robot_1.png')}}" width="300"height="300">
+<img src="{{url_for('static',filename='robot_2.png')}}" width="300"height="300">
+<img src="{{url_for('static',filename='robot_3.png')}}" width="300"height="300">
+<img src="{{url_for('static',filename='robot_4.png')}}" width="300"height="300">
+<p></p>
 <p id="demo"></p>
 
     <script>
@@ -126,6 +126,8 @@ body {
   background-color: #87DAF0;
   display: -webkit-flex;
   display: flex;
+  text-align: center;
+  position: center;
 }
 
 .red {
@@ -142,7 +144,7 @@ div.robot {
 }
 
 div.video {
-  position: relative;
+  position: center;
   right: 260px;
 }
 

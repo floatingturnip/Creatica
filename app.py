@@ -1,14 +1,14 @@
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, send_from_directory
 import cv2
 import effects
 import os
 from time import time
 
-app = Flask(__name__)
+app = Flask(__name__,static_folder='static')
 video = cv2.VideoCapture(0)
 index_add_counter = 0
 startTime = time()
-robot_img = 'static/robot_1.png'
+robot_img = 'robot_2.png'
 colour_selector = 0
 
 @app.route('/')
@@ -69,17 +69,17 @@ def increment_count():
     return "success=true"
     #pass #count = count + 1
 
-@app.route("/robot")
+@app.route("/get-image/<robot>")
 def robot():
     global colour_selector
     global robot_img
     global startTime
 
-    if time() - startTime >4:
-        change_robot(colour_selector)
-        startTime = time()
+    #if time() - startTime >4:
+     #   change_robot(colour_selector)
+      #  startTime = time()
 
-    return Response(gen_img(robot_img), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return send_from_directory(app.static_folder, filename='robot_4.png', as_attachment=True)
 
 def gen_img(image):
     img = cv2.imread(image)
@@ -94,13 +94,13 @@ def change_robot(x):
     global robot_img
 
     if x < 3:
-        robot_img = r'\static\robot_1.png'
+        robot_img = 'robot_1.png'
     elif x == 3:
-        robot_img = r'\static\robot_2.png'
+        robot_img = 'robot_2.png'
     elif x == 4:
-        robot_img = r'\static\robot_3.png'
+        robot_img = 'robot_3.png'
     else:
-        robot_img = r'\static\robot_4.png'
+        robot_img = 'robot_4.png'
 
 
 
