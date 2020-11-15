@@ -1,6 +1,7 @@
 from flask import Flask, render_template, Response
 import cv2
 import effects
+import os
 from time import time
 
 app = Flask(__name__)
@@ -59,4 +60,4 @@ def increment_count():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(threaded=True, port = int(os.environ.get('PORT', 5000)))
