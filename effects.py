@@ -14,9 +14,10 @@ def change_colour(image):
     red_img = np.full((rows, cols, 3), (0, 0, 255), np.uint8)
     new_image = cv2.add(image, red_img)
     return new_image
+
 def change_colour_green(image):
     (rows, cols, height) = np.shape(image)
-    green_img = np.full((rows, cols, 3), (0, 255, 0), np.uint8)
+    green_img = np.full((rows, cols, 3), (0, 150, 0), np.uint8)
     new_image = cv2.add(image, green_img)
     return new_image
 
@@ -26,14 +27,26 @@ def change_colour_blue(image):
     new_image = cv2.add(image, blue_img)
     return new_image
 
+def change_colour_purple(image):
+    (rows, cols, height) = np.shape(image)
+    blue_img = np.full((rows, cols, 3), (200, 0, 200), np.uint8)
+    new_image = cv2.add(image, blue_img)
+    return new_image
+def change_colour_yellow(image):
+    (rows, cols, height) = np.shape(image)
+    blue_img = np.full((rows, cols, 3), (150, 150, 0), np.uint8)
+    new_image = cv2.add(image, blue_img)
+    return new_image
+
 def colourize_image(image):
+    cnt = 0
     hsvim = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-    #lower = np.array([0, 10, 60], dtype="uint8")
-    #upper = np.array([20, 150, 255], dtype="uint8")
-    sensitivity = 70
+    lower = np.array([0, 10, 60], dtype="uint8")
+    upper = np.array([20, 150, 255], dtype="uint8")
+    sensitivity = 130
 
     lower = np.array([0, 0, 255 - sensitivity])
-    upper = np.array([360, sensitivity, 255])
+    upper = np.array([179, sensitivity, 255])
     skinRegionHSV = cv2.inRange(hsvim, lower, upper)
     blurred = cv2.blur(skinRegionHSV, (2, 2))
     ret, thresh = cv2.threshold(blurred, 0, 255, cv2.THRESH_BINARY)
@@ -51,6 +64,7 @@ def colourize_image(image):
         #print(hull)
         defects = cv2.convexityDefects(contours, hull)
         #print(defects)
+
         if defects is not None:
             cnt = 0
         for i in range(defects.shape[0]):  # calculate the angle
@@ -65,13 +79,13 @@ def colourize_image(image):
             if angle <= np.pi / 2:  # angle less than 90 degree, treat as fingers
                 cnt += 1
                 cv2.circle(image, far, 4, [0, 0, 255], -1)
-            print(cnt)
+            #print(cnt)
         if cnt > 0:
             cnt = cnt + 1
-        cv2.putText(image, str(cnt), (0, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
+        cv2.putText(image, str(cnt), (0, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 2, cv2.LINE_AA)
     except:
         pass
-    return image
+    return image, cnt
 
     #cv2.imshow("thresh", thresh)
     #print('test')
