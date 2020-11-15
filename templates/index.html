@@ -8,48 +8,45 @@
 <div class="topnav">
   <a class="active" href="#home">Home</a>
   <a href="#about">About</a>
+  <a href="#magic">Magic Out of the Palm of Your Hands</a>
   <a href="#instructions">Instructions</a>
   <a href="#video-testing">Video Testing</a>
   <a href="#contact-us">Contact Us</a>
 </div>
 
 <a id="home"></a><h1>Change the colour of the world with your hands</h1></a>
-
 <section class="red"><p></p></section>
 <section class="red"><p></p></section>
 
 <a id="about"><h2>About</h2></a>
 <section class="blue"><p></p></section>
-
 <section class="blue">
-
-  <section>
-    <p>London is the capital city of England. It is the most populous 		city in the  United Kingdom, with a metropolitan area of over 13 		million inhabitants.Standing on the River Thames, London has been a 	major settlement for two millennia, its history going back to its 		founding by the Romans, who named it Londinium.</p>
-  </section>
-
+    <p>London is the capital city of England. It is the most populous city in the  United Kingdom,
+        with a metropolitan area of over 13 million inhabitants.Standing on the River Thames,
+        London has been a 	major settlement for two millennia, its history going back to its
+        founding by the Romans, who named it Londinium.</p>
 </section>
-
-<section class="blue"><p></p></section>
-<a id="instructions"><h2>Instructions</h2></a>
 <section class="blue"><p></p></section>
 
+<a id="magic"><h2>Change the colour of your world with the palm of your hands</h2></a>
+<section class="red"><h3 class="clear">i</h3></section>
+<a id="instructions"><h3 class="sub">Instructions</h3></a>
+<section class="red"><h3 class="clear">i</h3></section>
+
+<section class="blue"><p></p></section>
 <section class="blue">
-
-  <section>
-    <p>London is the capital city of England. It is the most populous 		city in the  United Kingdom, with a metropolitan area of over 13 		million inhabitants.Standing on the River Thames, London has been a 	major settlement for two millennia, its history going back to its 		founding by the Romans, who named it Londinium.</p>
-  </section>
-
+    <p>London is the capital city of England. It is the most populous city in the  United Kingdom,
+        with a metropolitan area of over 13 million inhabitants.Standing on the River Thames,
+        London has been a 	major settlement for two millennia, its history going back to its
+        founding by the Romans, who named it Londinium.</p>
 </section>
-
 <section class="blue"><p></p></section>
-<a id="video-testing"><h2>Change the colour of your world with the palm of your hands</h2></a>
 
+<a id="video-testing"><p></p></a>
 <div class="video"><img id="bg" src="{{ url_for('video_feed') }}"></div>
 <div class="robot"><img src="{{url_for('robot')}}"></div>
-
 <button id = myBtn class="button">Enable Colour Changing</button>
-
-    <p id="demo"></p>
+<p id="demo"></p>
 
     <script>
     document.getElementById("myBtn").addEventListener("click", async function() {
@@ -59,13 +56,14 @@
         });
     });
     </script>
-<section class="red">
- <p class="red">Contact Us</p>
-</section>
 
+<section class="red"><h3 class="clear">i</h3></section>
+<section id="contact-us"><h3 class="sub">Contact Us</h3></section>
+<section class="red"><h3 class="clear">i</h3></section>
+<section><p></p></section>
 <a href="#home" class="button">To The Top</a>
-<button class="button">Button</button>
-<input type="button" class="button" value="Input Button">
+<section><p></p></section>
+
 
 </body>
 </html>
@@ -128,15 +126,12 @@ body {
   background-color: #87DAF0;
   display: -webkit-flex;
   display: flex;
-
 }
 
 .red {
   background-color: #F06270;
   display: -webkit-flex;
   display: flex;
-  text-align: center;
-
 }
 
 div.robot {
@@ -149,6 +144,20 @@ div.robot {
 div.video {
   position: relative;
   right: 260px;
+}
+
+.sub{
+    margin: 0;
+    color: white;
+    text-align: center;
+    background-color: #F06270;
+}
+
+.clear{
+    margin: 0;
+    color: #F06270;
+    text-align: center;
+    background-color: #F06270;
 }
 
 </style>
