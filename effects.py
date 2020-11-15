@@ -87,5 +87,4 @@ def colourize_image(image):
         pass
     return image, cnt
 
-    #cv2.imshow("thresh", thresh)
-    #print('test')
+

@@ -8,6 +8,8 @@ app = Flask(__name__)
 video = cv2.VideoCapture(0)
 index_add_counter = 0
 startTime = time()
+robot_img = r'\static\robot_1.png'
+colour_selector = 0
 
 @app.route('/')
 def hello_world():
@@ -16,8 +18,9 @@ def hello_world():
 
 def gen(video):
     while True:
-        global startTime
+        #global startTime
         global index_add_counter
+        global colour_selector
         success, image = video.read()
         new_image, count = effects.colourize_image(image)
         if index_add_counter % 2 == 1:
@@ -35,9 +38,11 @@ def gen(video):
             else:
                 new_image = image
 
-        #runs every 1 second
-        #if time() - startTime > 1:
+        #checks every 4 seconds to see if user is waving
+        #if time() - startTime > 4:
             #startTime = time()
+            #effects.change_robot(colour_selector)
+
         #new_image = effects.colourize_image(new_image)
         ret, jpeg = cv2.imencode('.jpg', new_image)
         frame = jpeg.tobytes()
@@ -63,6 +68,32 @@ def increment_count():
     print(index_add_counter)
     return "success=true"
     #pass #count = count + 1
+
+@app.route("/robot")
+def robot():
+    global colour_selector
+    global robot_img
+    global startTime
+
+    if time() - startTime >4:
+        change_robot(colour_selector)
+        startTime = time()
+
+    return robot_img
+
+# changes the sleepy robot to a waving robot if the user is waving
+def change_robot(x):
+    global robot_img
+
+    if x < 3:
+        robot_img = r'\static\robot_1.png'
+    elif x == 3:
+        robot_img = r'\static\robot_2.png'
+    elif x == 4:
+        robot_img = r'\static\robot_3.png'
+    else:
+        robot_img = r'\static\robot_4.png'
+
 
 
 if __name__ == '__main__':
